@@ -4,72 +4,40 @@ use num::{complex::Complex64, BigRational};
 
 use crate::{lexer::scanner::Position, Fixnum};
 
-/*
-pub struct Expr<I: Interner = NoIntern> {
-    pub pos: Position,
-    pub kind: ExprKind<I>,
-}
 
-impl<I: Interner> Expr<I> {
-    pub fn null(pos: Position) -> Box<Self> {
-        Box::new(Self {
-            pos,
-            kind: ExprKind::Null
-        })
-    }
-    pub fn from_slice(mut exprs: Vec<Box<Expr<I>>>, append: Box<Expr<I>>) -> Box<Self> {
-        exprs.reverse();
-        Self::make_list_unchecked(exprs, append)
-    }
-
-    pub fn make_list_unchecked(from_stack: Vec<Box<Expr<I>>>, append: Box<Expr<I>>) -> Box<Self> {
-        let mut res = append;
-        for expr in from_stack {
-            res = Box::new(Expr {
-                pos: expr.pos,
-                kind: ExprKind::Pair(expr, res)
-            });
-        }
-
-        res
-    }
-}
-
-pub enum ExprKind<I: Interner> {
-    Symbol(I::Sym),
-    Bool(bool),
-    Fixnum(Fixnum),
-    BigInt(num::BigInt),
-    Rational(crate::Rational),
-    BigRational(BigRational),
-    Float(f64),
-    Complex(Complex64),
-    Char(char),
-    Str(String),
-    Pair(Box<Expr<I>>, Box<Expr<I>>),
-    ImmutableVector(Box<[Box<Expr<I>>]>),
-    GrowableVector(Box<[Box<Expr<I>>]>),
-    ByteVector(Box<[u8]>),
-    Null,
-}
-*/
-
+/// Represents an S-expression value.
 pub enum Expr<I: Interner> {
+    /// Interned symbol
     Symbol(I::Sym),
+    /// S-expression with source position attached
     Syntax(Position, Box<Self>),
+    /// Boolean value
     Bool(bool),
+    /// Fixnum is either i32 or i64 depending on which feature is enabled (fixnum32 or fixnum64)
     Fixnum(Fixnum),
+    /// Big integer
     BigInt(num::BigInt),
+    /// Rational number
     Rational(crate::Rational),
+    /// Rational number backed by a BigInt
     BigRational(BigRational),
+    /// Floating point number
     Float(f64),
+    /// Complex number
     Complex(Complex64),
+    /// Character
     Char(char),
+    /// String
     Str(String),
+    /// Pair of S-expressions
     Pair(Box<Expr<I>>, Box<Expr<I>>),
+    /// Immutable vector 
     ImmutableVector(Box<[Box<Expr<I>>]>),
+    /// Growable vector
     GrowableVector(Box<[Box<Expr<I>>]>),
+    /// Byte vector
     ByteVector(Box<[u8]>),
+    /// null value
     Null,
 }
 

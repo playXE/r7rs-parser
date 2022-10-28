@@ -1,13 +1,12 @@
 [package]
 name = "r7rs-parser"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "MIT"
 authors = ["Adel Prokurov <adel.prokurov@gmail.com>"]
 description = "Simple Scheme R7RS parser & lexer"
 readme = "README.md"
 repository = "https://github.com/playxe/r7rs-parser"
-license-file = "LICENSE"
 keywords = ["parser","lexer","scheme","lisp","parsing"]
 categories = ["parser-implementations", "parsing"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
