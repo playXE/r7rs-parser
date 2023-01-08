@@ -635,7 +635,9 @@ impl<'a> Scanner<'a> {
                             while self.ch >= LA_CH && self.ch <= LZ_CH
                                 || self.ch >= UA_CH && self.ch <= UZ_CH
                             {
-                                let s = self.buffer.string_starting_at(1).to_lowercase();
+                                self.next_ch();
+                            }
+                            let s = self.buffer.string_starting_at(1).to_lowercase();
 
                                 match s.as_str() {
                                     "t" | "true" => self.token.kind = TokenKind::TrueLit,
@@ -645,7 +647,6 @@ impl<'a> Scanner<'a> {
                                         return;
                                     } 
                                 }
-                            }
                         }
                     }
 
