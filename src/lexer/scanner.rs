@@ -474,13 +474,13 @@ impl<'a> Scanner<'a> {
                     return;
                 }
 
-                LPAREN_CH => {
+                LPAREN_CH | '[' => {
                     self.token.kind = TokenKind::LParent;
                     self.next_ch();
                     return;
                 }
 
-                RPAREN_CH => {
+                RPAREN_CH | ']' => {
                     self.token.kind = TokenKind::RParent;
                     self.next_ch();
                     return;
