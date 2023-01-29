@@ -196,49 +196,49 @@ impl<'a, I: Interner> Parser<'a, I> {
             TokenKind::Quote => {
                 self.scanner.next();
 
-                res = Expr::from_slice(
+                return Ok(Expr::from_slice(
                     vec![
                         Box::new(Expr::Symbol(self.symbols.intern("quote"))),
                         self.parse(true)?,
                     ],
                     Box::new(Expr::Null),
-                );
+                ));
             }
 
             TokenKind::BackQuote => {
                 self.scanner.next();
 
-                res = Expr::from_slice(
+                return Ok(Expr::from_slice(
                     vec![
                         Box::new(Expr::Symbol(self.symbols.intern("quasiquote"))),
                         self.parse(true)?,
                     ],
                     Box::new(Expr::Null),
-                );
+                ));
             }
 
             TokenKind::Comma => {
                 self.scanner.next();
 
-                res = Expr::from_slice(
+                return Ok(Expr::from_slice(
                     vec![
                         Box::new(Expr::Symbol(self.symbols.intern("unquote"))),
                         self.parse(true)?,
                     ],
                     Box::new(Expr::Null),
-                );
+                ));
             }
 
             TokenKind::CommaAt => {
                 self.scanner.next();
 
-                res = Expr::from_slice(
+                return Ok(Expr::from_slice(
                     vec![
                         Box::new(Expr::Symbol(self.symbols.intern("unquote-splicing"))),
                         self.parse(true)?,
                     ],
                     Box::new(Expr::Null),
-                );
+                ));
             }
             TokenKind::Dot => {
                 self.scanner.next();
