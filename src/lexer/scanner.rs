@@ -76,43 +76,43 @@ pub fn is_digit_for_radix(c: char, radix: u32) -> bool {
 
 /// `is_initial` returns true if `ch` is an initial identifier character.
 #[inline]
-fn is_initial(ch: char) -> bool {
+pub fn is_initial(ch: char) -> bool {
     ch.is_alphabetic() || is_special_initial(ch)
 }
 
 /// `is_special_initial` returns true if `ch` is a special subsequent for identifiers.
 #[inline]
-fn is_special_initial(ch: char) -> bool {
+pub fn is_special_initial(ch: char) -> bool {
     "!$%&*/:<=>?^_~".contains(ch)
 }
 
 /// `is_subsequent` returns true if `ch` is a subsequent identifier character.
 #[inline]
-fn is_subsequent(ch: char) -> bool {
+pub fn is_subsequent(ch: char) -> bool {
     is_initial(ch) || ch.is_digit(10) || is_special_subsequent(ch)
 }
 
 /// `is_explicit_sign` returns true if ch is a plus (+) or minus (-) sign.
 #[inline]
-fn is_explicit_sign(ch: char) -> bool {
+pub fn is_explicit_sign(ch: char) -> bool {
     ch == '+' || ch == '-'
 }
 
 /// `is_special_subsequent` returns true if `ch` is a special subsequent identifier character.
 #[inline]
-fn is_special_subsequent(ch: char) -> bool {
+pub fn is_special_subsequent(ch: char) -> bool {
     is_explicit_sign(ch) || ch == '.' || ch == '@'
 }
 
 /// `is_dot_subsequent` returns true if `ch` is a dot subsequent for identifiers.
 #[inline]
-fn is_dot_subsequent(ch: char) -> bool {
+pub fn is_dot_subsequent(ch: char) -> bool {
     is_sign_subsequent(ch) || ch == '.'
 }
 
 /// `is_sign_subsequent` returns true if `ch` is a sign subsequent for identifiers.
 #[inline]
-fn is_sign_subsequent(ch: char) -> bool {
+pub fn is_sign_subsequent(ch: char) -> bool {
     is_initial(ch) || is_explicit_sign(ch) || ch == '@'
 }
 
