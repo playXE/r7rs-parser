@@ -89,6 +89,9 @@ pub fn is_special_initial(ch: char) -> bool {
 /// `is_subsequent` returns true if `ch` is a subsequent identifier character.
 #[inline]
 pub fn is_subsequent(ch: char) -> bool {
+    if ch == '\0' {
+        return false;
+    }
     is_initial(ch) || ch.is_digit(10) || is_special_subsequent(ch)
 }
 
@@ -372,7 +375,7 @@ impl<'a> Scanner<'a> {
                     }
                 } else if is_subsequent(self.ch) || self.ch == PLUS_CH || self.ch == MINUS_CH {
                     self.next_ch();
-                    while is_subsequent(self.ch) && self.ch != PLUS_CH || self.ch != MINUS_CH {
+                    while is_subsequent(self.ch) && self.ch != PLUS_CH && self.ch != MINUS_CH {
                         self.next_ch();
                     }
 
