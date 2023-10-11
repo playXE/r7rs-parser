@@ -830,7 +830,7 @@ impl<'a> Scanner<'a> {
                             self.token.int_val = 10;
                         }
 
-                        "null" => {
+                        "null" | "nul" => {
                             self.token.int_val = 0;
                         }
 
@@ -854,6 +854,12 @@ impl<'a> Scanner<'a> {
                             self.token.int_val = 11;
                         }
 
+                        "linefeed" => {
+                            self.token.int_val = 10;
+                        }
+                        "esc" => {
+                            self.token.int_val = 27;
+                        }
                         _ => {
                             self.signal(LexicalError::UnknownCharacterLiteral);
                         }
