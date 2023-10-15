@@ -494,6 +494,11 @@ impl<'a> Scanner<'a> {
                     self.next_ch();
                     return;
                 }
+                '`' => {
+                    self.token.kind = TokenKind::BackQuote;
+                    self.next_ch();
+                    return;
+                }
 
                 DQ_CH => {
                     self.scan_string();
